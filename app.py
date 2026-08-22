@@ -5,6 +5,9 @@ import sqlite3
 
 app = Flask(__name__)
 
+root_dir = Path(__file__).parent
+db_file = root_dir / 'db' / 'db.sqlite3'
+
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -21,15 +24,23 @@ def index():
         elif idade_aluno == '':
             return render_template('index.html', erro = 'ERRO, o campo idade deve ser preenchido')
         else:
+            connection = sqlite3.connect(db_file)
+            cursor = connection.cursor()
+            cursor.execute(
+                'INSERT INTO customers'
+                '(id, name, idade, cpf, dia) '
+                'VALUES '
+                '(NULL, ?, ?, ?, ?)',
+                (nome_aluno, idade_aluno, cpf_aluno, data_aluno)
+            )
+            connection.commit()
             print('---------ALUNO RECEBIDO---------')
             print(f'o nome do seu aluno é {nome_aluno} | o cpf é {cpf_aluno} |a idade é {idade_aluno} | e a data é {data_aluno}')
             print('---------------------------------')
-            caminho_csv = Path(__file__).parent/'clientes.csv'
-            with open(caminho_csv, 'a', newline='', encoding='utf-8') as arquivo:
-                escritor = csv.writer(arquivo)
-                escritor.writerow([nome_aluno, idade_aluno, cpf_aluno, data_aluno])
 
-    return render_template('index.html')
+            cursor.close()
+            connection.close()
+            return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
