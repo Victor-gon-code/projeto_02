@@ -1,0 +1,74 @@
+body{
+    margin: 0;
+    background-color: rgb(33, 147, 155);
+}
+
+
+#meu_titulo{
+    margin: 0;
+    background-color: rgba(7, 201, 207, 0.445);
+    font-size: 40px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* #titulos{
+    font-size: 25px;
+    text-align: left; */
+/* } */
+#meu_cadastro{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin-top: 100px;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: rgb(107, 184, 187);
+    transition: 0.3s;
+
+}
+
+#meu_cadastro:hover{
+    background-color: rgb(110, 186, 190);
+    transform: scale(1.02);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+input {
+    width: 100%;           /* Faz o input ocupar toda a largura da sua div #meu_cadastro */
+    padding: 12px;         /* "Engorda" a caixa por dentro, deixando ela mais alta e clicável */
+    font-size: 16px;       /* Aumenta a letra de quem está digitando */
+    border-radius: 5px;
+    border: none;          /* Tira aquela borda funda padrão e feia do navegador */
+    margin-bottom: 15px;   /* Dá um espaço para desgrudar a caixa do próximo item/botão */
+}
+
+button {
+    width: 100%;           /* Faz o botão ficar da mesma largura do input */
+    padding: 12px;         /* Deixa o botão mais alto e imponente */
+    font-size: 16px;       /* Aumenta o texto do botão */
+    border-radius: 5px;
+    border: none;
+    background-color: #21939b; /* Puxei uma das cores do seu tema */
+    color: white;          /* Letra branca para dar contraste */
+    font-weight: bold;     /* Deixa a letra em negrito */
+    cursor: pointer;       /* Faz o mouse virar uma "mãozinha" quando passa por cima */
+}
+
+#lista_usuarios{
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    margin: 20px auto;
+    font-size: 30px;
+    align-items: center;
+    background-color: rgb(110, 186, 190);
+    width: 400px;
+    padding: 20px;
+    list-style: num;
+}
+#lista_usuarios:empty {
+    display: none;
+}
