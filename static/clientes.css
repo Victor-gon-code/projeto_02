@@ -1,0 +1,87 @@
+body{
+    margin: 0;
+    background-color:  rgba(7, 201, 207, 0.445);
+}
+#meu_titulo{
+    text-align: center;
+    font-size: 70px;
+    margin: 0;
+    background-color: #21939b;
+    font-size: 40px;
+    text-align: center;
+    padding: 20px;
+}
+
+.tabela-container {
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px; 
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); 
+    overflow: hidden; 
+}
+
+.tabela-clientes {
+    width: 100%;
+    border-collapse: collapse; 
+    text-align: left;
+}
+
+
+.tabela-clientes th {
+    background-color: #21939b;
+    color: white;
+    padding: 18px;
+    font-size: 18px;
+    text-transform: uppercase; 
+}
+
+.tabela-clientes td {
+    padding: 15px 18px;
+    border-bottom: 1px solid #ddd; 
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.tabela-clientes tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
+.tabela-clientes tbody tr:hover {
+    background-color: #21939b;
+    color: white;
+    cursor: default;
+    transition: 0.2s;
+}
+
+.tabela-clientes tbody tr:hover td {
+    color: white; 
+}
+
+.container-voltar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.botao-voltar {
+    text-decoration: none;
+    background-color:#21939b; 
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    border: 2px solid white;
+}
+
+.botao-voltar:hover {
+    background-color: #21939b; 
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05); 
+}

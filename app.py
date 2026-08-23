@@ -51,6 +51,21 @@ def index():
                 connection.close()
                 return redirect(url_for('index'))
     return render_template('index.html')
+
+@app.route('/clientes')
+def clientes():
+    connection = sqlite3.connect(db_file)
+    cursor = connection.cursor()
+    cursor.execute(
+        'SELECT * FROM customers'
+    )
+    lista_clientes = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+    return render_template('clientes.html', alunos = lista_clientes)
+
+
     
 if __name__ == '__main__':
     app.run(debug=True)

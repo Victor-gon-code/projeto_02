@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'clientes.css')}}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+</head>
+<body>
+    <h1 id="meu_titulo">Clientes Cadastrados no Sistema</h1>
+
+    <div class="tabela-container">
+        <table class="tabela-clientes">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Aluno</th>
+                    <th>Idade</th>
+                    <th>CPF</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                <tr>
+                    <td>{{ aluno[0] }}</td>
+                    <td>{{ aluno[1] }}</td>
+                    <td>{{ aluno[2] }}</td>
+                    <td>{{ aluno[3] }}</td>
+                    <td>{{ aluno[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container-voltar">
+        <a href="/" class="botao-voltar">← Voltar para o Cadastro</a>
+    </div>
+
+</body>
+</html>
