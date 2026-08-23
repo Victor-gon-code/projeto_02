@@ -17,7 +17,7 @@ cursor.execute(
     'id INTEGER PRIMARY KEY AUTOINCREMENT,'
     'name TEXT,'
     'idade INTEGER,'
-    'cpf INTEGER,'
+    'cpf INTEGER UNIQUE,'
     'dia INTEGER'
     ')'
 )

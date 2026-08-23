@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import csv
 from pathlib import Path
 import sqlite3
@@ -27,20 +27,30 @@ def index():
             connection = sqlite3.connect(db_file)
             cursor = connection.cursor()
             cursor.execute(
-                'INSERT INTO customers'
-                '(id, name, idade, cpf, dia) '
-                'VALUES '
-                '(NULL, ?, ?, ?, ?)',
-                (nome_aluno, idade_aluno, cpf_aluno, data_aluno)
+                'SELECT id FROM customers WHERE cpf = ?', (cpf_aluno,)
             )
-            connection.commit()
-            print('---------ALUNO RECEBIDO---------')
-            print(f'o nome do seu aluno é {nome_aluno} | o cpf é {cpf_aluno} |a idade é {idade_aluno} | e a data é {data_aluno}')
-            print('---------------------------------')
+            resultado = cursor.fetchone()
+            if resultado :
+                cursor.close()
+                connection.close()
+                return render_template('index.html', erro = 'ERRO, cliente ja cadastrado')
+            else:
+                cursor.execute(
+                    'INSERT INTO customers'
+                    '(id, name, idade, cpf, dia) '
+                    'VALUES '
+                    '(NULL, ?, ?, ?, ?)',
+                    (nome_aluno, idade_aluno, cpf_aluno, data_aluno)
+                            )
+                connection.commit()
+                print('---------ALUNO RECEBIDO---------')
+                print(f'o nome do seu aluno é {nome_aluno} | o cpf é {cpf_aluno} |a idade é {idade_aluno} | e a data é {data_aluno}')
+                print('---------------------------------')
 
-            cursor.close()
-            connection.close()
-            return render_template('index.html')
-
+                cursor.close()
+                connection.close()
+                return redirect(url_for('index'))
+    return render_template('index.html')
+    
 if __name__ == '__main__':
     app.run(debug=True)
