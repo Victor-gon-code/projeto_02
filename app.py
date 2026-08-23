@@ -65,6 +65,40 @@ def clientes():
     connection.close()
     return render_template('clientes.html', alunos = lista_clientes)
 
+@app.route ('/editar/<int:id>', methods = ['GET', 'POST'])
+def editar_cliente(id):
+    if request.method == 'POST':
+        nome_aluno = request.form.get('nome_post')
+        cpf_aluno = request.form.get('cpf_post')
+        data_aluno = request.form.get('data_post')
+        idade_aluno = request.form.get('idade_post')
+
+        connection = sqlite3.connect(db_file)
+        cursor = connection.cursor()
+        cursor.execute(
+            'UPDATE customers SET name = ?, idade = ?, cpf = ?, dia = ? WHERE id = ?', 
+            (nome_aluno, idade_aluno, cpf_aluno, data_aluno, id)
+        ) 
+        connection.commit()
+        cursor.close()
+        connection.close() 
+        return redirect(url_for('clientes'))
+    else:
+        connection = sqlite3.connect(db_file)
+        cursor = connection.cursor()
+        cursor.execute(
+            'SELECT * FROM customers WHERE id = ?',(id,)
+            )
+        id_cliente = cursor.fetchone()
+        if id_cliente:
+            cursor.close()
+            connection.close()
+            return render_template('edicao.html', cliente = id_cliente)
+        else:
+            return redirect(url_for('clientes'))
+    
+    # return f'essa é a pagina de ediçao do cliente de numero {id}'
+           
 
     
 if __name__ == '__main__':

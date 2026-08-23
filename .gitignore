@@ -1,3 +1,8 @@
 clientes.csv
 db.sqlite3
 db/
+venv/
+env/
+.env/
+__pycache__
+*.pyc

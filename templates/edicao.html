@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="meu_titulo">Editar o Cliente {{cliente[1]}}</h1>
+    <form action="" method="post">
+        <div id="meu_cadastro">
+            <h1 id ='titulos'>EDITAR CLIENTE</h1>
+            <input type="text" id="caixa_entrada" name="nome_post" value="{{cliente[1]}}" placeholder="digite o nome do aluno" required>
+            <input type="number" name="cpf_post" id="caixa_funcao" value="{{cliente[3]}}" placeholder="digite o cpf" required>
+            <input type="number" name="idade_post" id="caixa_funcao" value="{{cliente[2]}}" placeholder="digite a idade" required>
+            <input type="text" name="data_post" id="caixa_data" value="{{cliente[4]}}" placeholder="digite o a data" required>
+            <button class="botao">Confirmar Edição do cliente</button>
+            <div class="container-ver-clientes">
+                <a href="/clientes" class="botao-ver-clientes">Ver Clientes Cadastrados</a>
+            </div>
+        </div>
+    </form>
+    {% if erro %}
+    <script>
+        alert("{{ erro }}");
+    </script>
+    {% endif %}
+        
+
+    <ul id="lista_usuarios"></ul>
+    <script src="main.js"></script>
+    
+</body>
+</html>

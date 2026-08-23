@@ -18,6 +18,7 @@
                     <th>Idade</th>
                     <th>CPF</th>
                     <th>Data</th>
+                    <th>atualizar</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,9 @@
                     <td>{{ aluno[2] }}</td>
                     <td>{{ aluno[3] }}</td>
                     <td>{{ aluno[4] }}</td>
+                    <td>
+                        <a href="/editar/{{ aluno[0] }}" class="botao-editar" >Editar</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
