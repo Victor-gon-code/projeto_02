@@ -21,10 +21,20 @@ cursor.execute(
     'dia INTEGER'
     ')'
 )
+table_users_2 = 'logins'
+cursor.execute(
+    f'CREATE TABLE IF NOT EXISTS {table_users_2}'
+    '('
+    'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+    'usuário TEXT, '
+    'senha TEXT '
+    ')'
+)
+
+cursor.execute(
+    'INSERT INTO logins (usuário, senha) VALUES (?, ?)',
+    ('admin', 'admin')
+)
 connection.commit()
-
-
-
-
 cursor.close()
 connection.close()

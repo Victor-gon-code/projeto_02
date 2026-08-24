@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema de Alunos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body class="body-login">
+    
+    <div class="login-card">
+        <h2>Bem-vindo de volta!</h2>
+        <p>Faça login para acessar o sistema</p>
+
+        <form action="/login" method="POST">
+            <div class="grupo-input">
+                <label for="login">Usuário</label>
+                <input type="text" id="login" name="login_post" placeholder="Digite seu usuário" required>
+            </div>
+
+            <div class="grupo-input">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha_post" placeholder="Digite sua senha" required>
+            </div>
+
+            <button type="submit" class="botao-login">Entrar no Sistema</button>
+        </form>
+
+        <!-- Mostra o erro bonitinho se a senha estiver errada -->
+        {% if erro %}
+            <div class="mensagem-erro">
+                {{ erro }}
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

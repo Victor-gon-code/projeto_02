@@ -13,24 +13,26 @@
         <table class="tabela-clientes">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nome do Aluno</th>
                     <th>Idade</th>
                     <th>CPF</th>
                     <th>Data</th>
                     <th>atualizar</th>
+                    <th>deletar</th>
                 </tr>
             </thead>
             <tbody>
                 {% for aluno in alunos %}
                 <tr>
-                    <td>{{ aluno[0] }}</td>
                     <td>{{ aluno[1] }}</td>
                     <td>{{ aluno[2] }}</td>
                     <td>{{ aluno[3] }}</td>
                     <td>{{ aluno[4] }}</td>
                     <td>
                         <a href="/editar/{{ aluno[0] }}" class="botao-editar" >Editar</a>
+                    </td>
+                    <td>
+                        <a href="/excluir/{{ aluno[0] }}" class="botao-excluir" >Excluir</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -40,6 +42,8 @@
 
     <div class="container-voltar">
         <a href="/" class="botao-voltar">← Voltar para o Cadastro</a>
+        <br>
+        <a href="/logout" class = 'botao-sair'>Sair do Sistema</a>
     </div>
 
 </body>

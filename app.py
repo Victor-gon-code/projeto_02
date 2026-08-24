@@ -1,15 +1,18 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import csv
 from pathlib import Path
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = 'super_senha_do_dev'
 
 root_dir = Path(__file__).parent
 db_file = root_dir / 'db' / 'db.sqlite3'
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
+    if 'logado' not in session:
+        return redirect(url_for('logar'))
     if request.method == 'POST':
         nome_aluno = request.form.get('nome_post')
         cpf_aluno = request.form.get('cpf_post')
@@ -54,6 +57,8 @@ def index():
 
 @app.route('/clientes')
 def clientes():
+    if 'logado' not in session:
+        return redirect(url_for('logar'))
     connection = sqlite3.connect(db_file)
     cursor = connection.cursor()
     cursor.execute(
@@ -67,6 +72,8 @@ def clientes():
 
 @app.route ('/editar/<int:id>', methods = ['GET', 'POST'])
 def editar_cliente(id):
+    if 'logado' not in session:
+        return redirect(url_for('logar'))
     if request.method == 'POST':
         nome_aluno = request.form.get('nome_post')
         cpf_aluno = request.form.get('cpf_post')
@@ -96,10 +103,52 @@ def editar_cliente(id):
             return render_template('edicao.html', cliente = id_cliente)
         else:
             return redirect(url_for('clientes'))
-    
-    # return f'essa é a pagina de ediçao do cliente de numero {id}'
-           
+
+@app.route('/excluir/<int:id>')
+def excluir_cliente(id):
+    if 'logado' not in session:
+        return redirect(url_for('logar'))
+    connection = sqlite3.connect(db_file)
+    cursor = connection.cursor()
+    cursor.execute(
+        'DELETE FROM customers WHERE id = ?',(id,)
+    )
+    connection.commit()
+    cursor.close()
+    connection.close()
+    return redirect(url_for('clientes'))
+
+@app.route('/login', methods = ['GET', 'POST'])
+def logar():
+    if request.method == 'POST':
+        usuario = request.form.get('login_post')
+        senha = request.form.get('senha_post')
+        connection = sqlite3.connect(db_file)
+        cursor = connection.cursor()
+        cursor.execute(
+            'SELECT * FROM logins WHERE usuário = ? and senha = ?',
+            (usuario, senha )
+        )
+        login = cursor.fetchone()
+        cursor.close()
+        connection.close()
+        if login:
+            session['logado'] = True
+            return redirect(url_for('clientes'))
+        else:
+            return render_template('login.html', erro = 'Usuário ou senha inválido(s)')
+        
+    else:
+        return render_template('login.html')
+
+@app.route('/logout')
+def sair():
+    session.clear()
+    return redirect(url_for('logar'))
+
+
+
 
     
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

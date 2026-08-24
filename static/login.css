@@ -1,0 +1,92 @@
+.body-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f7f6;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.login-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 350px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-card h2 {
+    color: #21939b;
+    margin-bottom: 5px;
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.login-card p {
+    color: #777;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.grupo-input {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.grupo-input label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.grupo-input input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.grupo-input input:focus {
+    border-color: #21939b;
+    outline: none;
+}
+
+.botao-login {
+    width: 100%;
+    padding: 14px;
+    background-color: #21939b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+
+.botao-login:hover {
+    background-color: rgb(107, 184, 187);
+    transform: translateY(-2px);
+}
+
+.mensagem-erro {
+    margin-top: 20px;
+    color: #d9534f;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+}
